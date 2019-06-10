@@ -1,6 +1,6 @@
 # Building Data Warehouse with Amazon Redshift
 
-In this project I created an ETL pipeline for a database hosted on Redshift. I loaded data from S3 to staging tables on Redshift and execute SQL statements that created the analytics tables from these staging tables. Finally, I tested the tables against some sample analytical queries.
+In this project I created an ETL pipeline for a database hosted on Redshift. I loaded data from S3 to staging tables on Redshift and execute SQL statements that created the analytics tables from these staging tables. Finally, I tested the tables against some sample analytical queries handed by the analytics team as part of their requirements specification.
 
 ## Analytics Team's Requirement
 A fictitious music streaming startup, Sparkify, has grown their user base and song database and want to move their processes and data onto the cloud. Their data resides in S3, in a directory of JSON logs on user activity on the app, as well as a directory with JSON metadata on the songs in their app.
