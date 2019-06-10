@@ -42,14 +42,14 @@ Then I ran different SQL INSERT queries by selecting data from staging tables to
 
 The dimension tables are designed to contain majority of the information related to the entity being represented by them and there by minimizing JOIN operations required to access information about any dimension while executing analytical queries.
 
-#### Organization of solution code in files
+### Organization of solution code in files
 The code has been modularized into different files.
 * `create_tables.py` is a python script useful for dropping existing tables and creating new ones of types staging, facts and dimensions in AWS Redshift cluster database.
 * `etl.py` is a python script for performing ETL operation i.e. loading events and songs data from S3 into Redshift cluster and filling up staging, facts and dimensions tables. It also executes some sample analytical queries and prints the results.
 * `sql_queries.py` contains all the declarations of the queries that are used by *create_tables.py* for creating and dropping tables and *etl.py* for copying data from S3 to staging using COPY commands and from staging tables to facts and dimensions tables using SQL INSERT queries. It also declares some analytical queries used by *etl.py* to test them against loaded Redshift database.
 * `dwh.cfg` specifies configuration values for connecting to Redshift cluster database and locations of data files in S3.
 
-#### How to run the solution
+### How to run the solution
 The python scripts in this project are meant to be run by Python version 3+. Following commands are to be run after setting current directory of terminal to be project's directory.
 To install the dependencies for the file, one can run:
 
