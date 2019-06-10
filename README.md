@@ -1,4 +1,4 @@
-# Building Data Warehouse with AWS Redshift
+# Building Data Warehouse with Amazon Redshift
 
 In this project I created an ETL pipeline for a database hosted on Redshift. I loaded data from S3 to staging tables on Redshift and execute SQL statements that created the analytics tables from these staging tables.
 
