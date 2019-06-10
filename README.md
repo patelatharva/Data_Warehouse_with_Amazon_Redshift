@@ -44,10 +44,26 @@ The dimension tables are designed to contain majority of the information related
 
 #### Organization of solution code in files
 The code has been modularized into different files.
-**create_tables.py** is a python script useful for dropping existing tables and creating new ones of types staging, facts and dimensions in AWS Redshift cluster database.
-**etl.py** is a python script for performing ETL operation i.e. loading events and songs data from S3 into Redshift cluster and filling up staging, facts and dimensions tables. It also executes some sample analytical queries and prints the results.
-**sql_queries.py** contains all the declarations of the queries that are used by *create_tables.py* for creating and dropping tables and *etl.py* for copying data from S3 to staging using COPY commands and from staging tables to facts and dimensions tables using SQL INSERT queries. It also declares some analytical queries used by *etl.py* to test them against loaded Redshift database.
-**dwh.cfg** specifies configuration values for connecting to Redshift cluster database and locations of data files in S3.
+* `create_tables.py` is a python script useful for dropping existing tables and creating new ones of types staging, facts and dimensions in AWS Redshift cluster database.
+* `etl.py` is a python script for performing ETL operation i.e. loading events and songs data from S3 into Redshift cluster and filling up staging, facts and dimensions tables. It also executes some sample analytical queries and prints the results.
+* `sql_queries.py` contains all the declarations of the queries that are used by *create_tables.py* for creating and dropping tables and *etl.py* for copying data from S3 to staging using COPY commands and from staging tables to facts and dimensions tables using SQL INSERT queries. It also declares some analytical queries used by *etl.py* to test them against loaded Redshift database.
+* `dwh.cfg` specifies configuration values for connecting to Redshift cluster database and locations of data files in S3.
+
+#### How to run the solution
+The python scripts in this project are meant to be run by Python version 3+. Following commands are to be run after setting current directory of terminal to be project's directory.
+To install the dependencies for the file, one can run:
+
+    pip install -r requirements.txt
+
+The scripts assumes the Redshift cluster to be available and is accepting TCP connection on port 5439 from the machine on which the scripts will be executed. The configuration details related to Redshift cluster is stored in `dwh.cfg` file in project directory. One must specify details like Redshift cluster hostname, database name, username, password and database port. It also expects IAM Role that is to be assumed the database cluster to COPY data from S3. Finally the locations of files where the data about user activity logs and songs are stored and the path to file containing JSONpaths for converting log files from JSON to database entries has to be specified in `dwh.cfg`.
+
+To create tables in Redshift, run following command in the terminal with current directory set to project's directory.
+
+    python create_tables.py
+
+To start ETL process of loading data from S3 to staging area, from staging area to facts and dimension tables and finally running some sample queries to test everything, run following command.
+
+    python etl.py
 
 ### Testing against sample analytical queries
 I tested the database of facts and dimension tables against following sample queries that would show some metrics that senior management of company might interested in keeping track of through dashboards and the results were as expected.
